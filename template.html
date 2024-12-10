@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        @page {
+            @top-left {
+                content: "Company Name";
+            }
+
+            @top-right {
+                content: "{{ title }}";
+            }
+
+            @bottom-left {
+                content: string(header);
+            }
+
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+
+        h2 {
+            string-set: header content();
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        .toc {
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+
+        .toc a::after {
+            content: leader('.') target-counter(attr(href), page);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>{{ title }}</h1>
+        <p>Version {{ version }}</p>
+        <p>Last modified {{ date_modified }}</p>
+    </header>
+
+    <nav class="toc">
+        {{ toc | safe }}
+    </nav>
+
+    <main class="content">
+        {{ content | safe }}
+    </main>
+</body>
+
+</html>
