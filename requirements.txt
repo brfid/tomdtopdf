@@ -1,0 +1,7 @@
+python-frontmatter
+markdown
+jinja2
+weasyprint
+mkdocs
+mkdocstrings
+mkdocstrings-python

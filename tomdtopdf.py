@@ -34,7 +34,7 @@ The docstrings and included files can generate documentation with mkdocs. Run `m
 
 # Dependencies
 
-- `frontmatter`
+- `python-frontmatter`
 - `markdown`
 - `jinja2`
 - `weasyprint`
