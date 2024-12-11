@@ -33,6 +33,8 @@ The Enterprise-D is equipped with the following propulsion systems:
 
 The warp core is the primary power source for the starship, utilizing matter-antimatter reactions to generate energy.
 
+![](core.jpg)
+
 ### Shields
 
 The deflector shields protect the ship from external threats and hazards.
