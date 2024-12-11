@@ -5,21 +5,33 @@
     <meta charset="UTF-8">
     <title>{{ title }}</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica:wght@400&display=swap');
+
         @page {
+            /* Existing @page styles */
             @top-left {
                 content: "DomainTools";
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 10pt;
             }
 
             @top-right {
                 content: "{{ title }}";
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 10pt;
             }
 
             @bottom-left {
                 content: string(header);
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 10pt;
             }
 
             @bottom-right {
                 content: "Page " counter(page) " of " counter(pages);
+                font-family: Helvetica, Arial, sans-serif;
+                font-size: 10pt;
             }
         }
 
@@ -28,20 +40,85 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: #91D117;
+            margin-top: 1.2em;
+            margin-bottom: 0.6em;
+        }
+
+        p {
+            margin-bottom: 1em;
         }
 
         nav {
             margin-bottom: 20px;
         }
 
-        .toc {
-            font-size: 0.9em;
-            line-height: 1.6;
+        nav.toc {
+            margin: 0;
+            padding: 0;
         }
 
-        .toc a::after {
+        nav.toc ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav.toc li {
+            margin: 0;
+            padding: 0;
+        }
+
+        nav.toc ul ul {
+            padding-left: 1em;
+        }
+
+        nav.toc a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        nav.toc a::after {
             content: leader('.') target-counter(attr(href), page);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Updated table styling */
+        table {
+            width: 100%;
+            table-layout: fixed; /* Prevent table from exceeding page width */
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            word-wrap: break-word; /* Enable word wrapping in table cells */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            overflow-wrap: break-word; /* Wrap content within cells */
+            font-size: 9pt; /* Set table text size to 9pt */
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
@@ -61,5 +138,4 @@
         {{ content | safe }}
     </main>
 </body>
-
 </html>

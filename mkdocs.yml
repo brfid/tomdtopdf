@@ -1,0 +1,158 @@
+site_name: DomainTools Technical Documentation
+
+extra_css:
+  - stylesheets/extra.css
+
+theme:
+  logo: images/gearlogo.png
+  favicon: images/gearlogo.png
+  name: material
+  custom_dir: overrides
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  extra_css:
+    - stylesheets/extra.css
+
+  features:
+    - search.suggest
+    - navigation.path # shows breadcrumbs
+    - navigation.indexes # permits landing pages in nav
+    - navigation.top # 'back to top' button on scrollup
+    - navigation.tracking # auto-add header links to URL when scrolling
+
+markdown_extensions: 
+  - attr_list
+  - md_in_html # align images, among other things
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Home: index.md
+  - APIs and SDKs:
+    - api/index.md
+    - Iris APIs:
+      - api/iris/index.md
+      - Iris Investigate REST API:
+        - api/iris/investigate/index.md
+        - API Reference ↗: api/iris/investigate/api_reference.md
+        - SwaggerHub ↗: api/iris/investigate/swaggerhub.md
+        - Python Wrapper ↗: api/iris/investigate/pythonwrapper.md
+      - Iris Detect REST API:
+        - api/iris/detect/index.md
+        - API Reference ↗: api/iris/detect/api_reference.md
+        - SwaggerHub ↗: api/iris/detect/swaggerhub.md
+        - Python Wrapper ↗: api/iris/detect/pythonwrapper.md
+      - Iris Enrich REST API:
+        - api/iris/enrich/index.md
+        - API Reference ↗: api/iris/enrich/api_reference.md
+        - SwaggerHub ↗: api/iris/enrich/swaggerhub.md
+        - Python Wrapper ↗: api/iris/enrich/pythonwrapper.md
+    - DNSDB API:
+      - api/dnsdb/index.md
+      - DNSDB API v2 ↗: api/dnsdb/api_reference_v2.md
+      - DNSDB API v1 ↗: api/dnsdb/api_reference_v1.md
+      - DNSDB Streaming API Protocol ↗: api/dnsdb/streaming_protocol.md
+      - DNSDB Scout API ↗: api/dnsdb/scout_endpoints.md
+      - DNSDB on SwaggerHub ↗: api/dnsdb/swaggerhub.md
+    - SIE APIs:
+      - api/sie/index.md
+      - SIE Batch API Reference ↗: api/sie/batch_api_reference.md
+      - SIE Batch on SwaggerHub ↗: api/sie/batch_swaggerhub.md
+      - SIE Remote Access (AXA) API Reference ↗: api/sie/axa_api_reference.md
+    - Tools: 
+      - api/tools/index.md
+      - Python Wrapper ↗: api/tools/pythonwrapper.md
+      - DNSDB + SIE Tools ↗: api/tools/dnsdb_sie_tools.md
+    - Playbooks:
+      - api/playbooks/index.md
+      - SOAR Playbooks ↗: api/playbooks/soar_playbooks.md
+      - SOAR Workflows ↗: api/playbooks/soar_workflows.md
+  - Farsight DNSDB:
+    - dnsdb/index.md
+    - APIs: api/dnsdb/
+    - DNSDB FAQ: dnsdb/faq.md
+    - DNSDB Export:
+      - dnsdb/export/index.md
+      - DNSDB Export User Guide: dnsdb/export/userguide.md
+    - DNSDB Scout:
+      - dnsdb/scout/index.md
+      - DNSDB Scout User Guide: dnsdb/scout/userguide.md
+      - Flexible Search with DNSDB Scout User Guide: dnsdb/scout/flexsearch_userguide.md
+    - DNSDB Search:
+      - dnsdb/search/index.md
+      - Regular Expressions Reference ↗: dnsdb/search/regex_reference.md
+      - Glob Reference ↗: dnsdb/search/glob_reference.md
+      - dnsdbflex Flexible Query Tool ↗: dnsdb/search/flex_reference.md
+      - DNSDB Time Fencing Guide ↗: dnsdb/search/time_fencing.md
+      - DNSDBQ Query Tool ↗: dnsdb/search/query_tool.md
+  - Farsight SIE:
+    - sie/index.md
+    - APIs: api/sie/
+    - User Guide: sie/userguide.md
+    - SIE Batch:
+      - sie/batch/index.md
+      - User Guide ↗: sie/batch/userguide.md
+    - SIE Remote Access:
+      - sie/remoteaccess/index.md
+      - SIE AXA User Guide ↗: sie/remoteaccess/axa_userguide.md
+      - SIE NMSG User Guide ↗: sie/remoteaccess/nmsg_userguide.md
+      - SIE NMSG Tutorials: sie/remoteaccess/tutorials/index.md
+  - Integrations:
+    - integrations/index.md
+    - Anomali: integrations/anomali.md
+    - Crowdstrike Falcon:
+      - Crowdstrike Marketplace ↗: integrations/crowdstrike_marketplace.md
+    - Google Chronicle SIEM: integrations/chronicle.md
+    - Maltego:
+      - integrations/maltego/index.md
+      - Maltego Transforms Technical Reference ↗: integrations/maltego/maltego_transforms.md
+      - Iris Transforms for Maltego: integrations/maltego/maltego_iris_transforms.md
+      - DNSDB Transforms for Maltego ↗: integrations/maltego/maltego_dnsdb_transforms.md
+    - Microsoft Sentinel: integrations/sentinel.md
+    - Palo Alto XSOAR: integrations/paloalto_xsoar.md
+    - Splunk:
+      - integrations/splunk/index.md
+      - Splunk and Splunk ES 5: integrations/splunk/splunk_5.md
+      - Splunk SOAR: integrations/splunk/splunk_soar.md
+      - DNSDB App for Splunk ↗: integrations/splunk/splunk_dnsdb.md
+    - ServiceNow:
+      - integrations/servicenow/index.md
+      - Iris Investigate ↗: integrations/servicenow/servicenow_iris.md
+      - DNSDB ↗: integrations/servicenow/servicenow_dnsdb.md
+  - Iris:
+    - iris/index.md
+    - APIs: api/iris/
+    - Iris Investigate:
+      - iris/investigate/index.md
+      - User Guide: iris/investigate/userguide.md
+      - API: api/iris/investigate/
+    - Iris Enrich:
+      - iris/enrich/index.md
+      - API: api/iris/enrich/
+    - Iris Detect:
+      - iris/detect/index.md
+      - User Guide: iris/detect/userguide.md
+      - API: api/iris/detect/
+    - Iris On-Premise:
+      - iris/onprem/index.md
+      - Reference: iris/onprem/reference.md
+  - Threat Intelligence Feeds:
+    - feeds/index.md
+    - Realtime Feeds:
+      - feeds/realtime/index.md
+    - Daily Feeds: feeds/daily/userguide.md
+    - On-Prem Export Feeds:
+      - feeds/export/index.md
+      - Iris On-Prem: iris/onprem/reference/
+      - DNSDB Export: dnsdb/export/userguide/
+  - Recent Updates ↗: https://www.domaintools.com/product-update-timeline/
+  - www.domaintools.com ↗: https://www.domaintools.com

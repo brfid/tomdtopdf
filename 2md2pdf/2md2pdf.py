@@ -57,7 +57,7 @@ from argparse import ArgumentParser
 from frontmatter import load
 from markdown import Markdown
 from jinja2 import Environment, FileSystemLoader
-from weasyprint import HTML
+from weasyprint import HTML, CSS
 
 
 def arguments():
@@ -169,7 +169,7 @@ def html2pdf(metadata, html):
     try:
         if not metadata.get("pdf_filename"):
             raise ValueError("Cannot access file from pdf_filename.")
-        HTML(string=html).write_pdf(metadata["pdf_filename"])
+        HTML(string=html, base_url='.').write_pdf(metadata["pdf_filename"])
     except Exception as e:
         print(f"html2pdf() failed to generate PDF: {e}.")
         sys.exit(1)
@@ -181,7 +181,8 @@ def main():
     """
     args = arguments()  # get arguments
     metadata, content = load_doc(args)  # extract metadata + content
-    field_check(metadata), content_check(content)  # field, content check
+    field_check(metadata)  # field check
+    content_check(content)  # content check
     html = md2html(metadata, content, args.template_location)  # render HTML
     html2pdf(metadata, html)  # render PDF
 
