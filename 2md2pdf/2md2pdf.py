@@ -57,7 +57,7 @@ from argparse import ArgumentParser
 from frontmatter import load
 from markdown import Markdown
 from jinja2 import Environment, FileSystemLoader
-from weasyprint import HTML, CSS
+from weasyprint import HTML
 
 
 def arguments():
@@ -133,24 +133,27 @@ def md2html(metadata, content, template_location):
 
     :param metadata: Dictionary of metadata fields.
     :param content: String of markdown content.
-    :return: HTML content.
-    :rtype: str
+    :return: HTML content and template directory.
+    :rtype: Tuple[str, str]
     """
     try:
-        # Markdown module, convert to html
+        # Convert Markdown to HTML
         md = Markdown(extensions=["toc", "tables"])
-        html_content = md.convert(content)  # generate html content
-        toc_html = md.toc  # generate html-linked toc
+        html_content = md.convert(content)
+        toc_html = md.toc
 
-        # Jinja2 module, render html
+        # Set up Jinja2 environment
         template_dir, template_file = os.path.split(template_location)
         template_dir = template_dir if template_dir else "."
-        env = Environment(loader=FileSystemLoader(template_dir))  # env object
-        template = env.get_template(template_file)  # env load template
-        # unpack dictionary of metadata values and add the others
+        env = Environment(loader=FileSystemLoader(template_dir))
+        template = env.get_template(template_file)
+
+        # Render HTML with context
         context = {**metadata, "content": html_content, "toc": toc_html}
-        html = template.render(context)  # render the html
-        return html
+        html = template.render(context)
+
+        # Return HTML content and template directory
+        return html, template_dir
 
     except Exception as e:
         print(f"md2html() failed to convert md to html: {e}.")
@@ -169,7 +172,8 @@ def html2pdf(metadata, html):
     try:
         if not metadata.get("pdf_filename"):
             raise ValueError("Cannot access file from pdf_filename.")
-        HTML(string=html, base_url='.').write_pdf(metadata["pdf_filename"])
+        # Updated base_url to properly resolve image paths
+        HTML(string=html, base_url=os.getcwd()).write_pdf(metadata["pdf_filename"])
     except Exception as e:
         print(f"html2pdf() failed to generate PDF: {e}.")
         sys.exit(1)
@@ -183,7 +187,7 @@ def main():
     metadata, content = load_doc(args)  # extract metadata + content
     field_check(metadata)  # field check
     content_check(content)  # content check
-    html = md2html(metadata, content, args.template_location)  # render HTML
+    html, template_dir = md2html(metadata, content, args.template_location)  # render HTML
     html2pdf(metadata, html)  # render PDF
 
 
