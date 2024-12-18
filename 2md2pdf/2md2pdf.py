@@ -1,11 +1,7 @@
 """
 # Description
 
-`tomdtopdf` (pronounced "2 MD 2 PDF") reads from a text file containing markdown content and YAML header metadata, and creates a PDF. It program parses the metadata and markdown content, applies a HTML template, and generates a PDF file with native pagination and a linked table of contents.
-
-In this stage of development the program is designed to be run on individual files from the command line, and exits on the first sign of trouble.
-
-The docstrings and included files can generate documentation with mkdocs. Run `mkdocs build` followed by `mkdocs serve` in the project directory with the dependencies installed.
+`tomdtopdf` (pronounced "2 MD 2 PDF") reads from a text file containing markdown content and YAML header metadata, parses the metadata and markdown content, applies a HTML+CSS template, and generates a PDF file with native pagination and a linked table of contents.
 
 # Usage
 
@@ -23,14 +19,11 @@ The docstrings and included files can generate documentation with mkdocs. Run `m
 
 # Included Files
 
-- `docs/index.md`: Markdown template file for mkdocs.
 - `input.md`: Example input file.
-- `mkdocs.yml`: Configuration file for mkdocs.
-- `project.py`: This project's script.
+- `tomdtopdf`: This project's script.
 - `README.MD`: The course-specified readme.
 - `requirements.txt`: List of dependencies.
 - `template.html`: HTML and CSS template file for the Jinja2 module.
-- `test_project.py`: Test file for the project.
 
 # Dependencies
 
@@ -44,7 +37,7 @@ The docstrings and included files can generate documentation with mkdocs. Run `m
 
 # Author
 
-Bradley Fidler
+Brad Fidler (@brfid)
 
 # License
 
