@@ -31,9 +31,6 @@
 - `markdown`
 - `jinja2`
 - `weasyprint`
-- `mkdocs`
-- `mkdocstrings`
-- `mkdocstrings-python`
 
 # Author
 
@@ -57,10 +54,6 @@ def arguments():
     """
     Parses command-line arguments with argparse to get the
     template and input file locations.
-
-    :raises SystemExit: if no arguments are provided.
-    :return: Namespace object with the template and markdown locations.
-    :rtype: argparse.Namespace
     """
     parser = ArgumentParser(description="Convert md to pdf.")
     parser.add_argument(
@@ -76,10 +69,6 @@ def arguments():
 def load_doc(args):
     """
     Load and parse the file contents and metadata with the Frontmatter module.
-
-    :param args: Namespace object with the location of the md file.
-    :return: Tuple of metadata and content.
-    :rtype: Tuple[Dict[str, str], str]
     """
     try:
         with open(args.md_location, "r", encoding="utf-8") as openfile:
@@ -94,9 +83,6 @@ def load_doc(args):
 def field_check(metadata):
     """
     Checks for required metadata fields and quits if any are missing.
-
-    :param metadata: Dictionary of metadata fields.
-    :raises SystemExit: if any required fields are missing.
     """
     required_fields = ["title", "version", "date_modified", "pdf_filename"]
     for field in required_fields:
@@ -108,9 +94,6 @@ def field_check(metadata):
 def content_check(content):
     """
     Checks for markdown content in the markdown file and quits if it is missing.
-
-    :param content: String of markdown content.
-    :raises SystemExit: if the content is missing.
     """
     if not content:
         print("Markdown content not present.")
@@ -123,11 +106,6 @@ def content_check(content):
 def md2html(metadata, content, template_location):
     """
     Convert MD to HTML with the Markdown and Jinja2 modules.
-
-    :param metadata: Dictionary of metadata fields.
-    :param content: String of markdown content.
-    :return: HTML content and template directory.
-    :rtype: Tuple[str, str]
     """
     try:
         # Convert Markdown to HTML
@@ -156,11 +134,6 @@ def md2html(metadata, content, template_location):
 def html2pdf(metadata, html):
     """
     Render and write the PDF with the Weasyprint module.
-
-    :param metadata: Dictionary of metadata fields. Must include 'pdf_filename' key.
-    :param html: String of HTML content to be converted to PDF.
-    :raises ValueError: If 'pdf_filename' is not provided in metadata.
-    :raises Exception: For any other exceptions that occur during PDF generation.
     """
     try:
         if not metadata.get("pdf_filename"):
