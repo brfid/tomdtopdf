@@ -1,44 +1,25 @@
+#!/usr/bin/env python3
 """
-# Description
+tomdtopdf.py
 
-`tomdtopdf` (pronounced "2 MD 2 PDF") reads from a text file containing markdown content and YAML header metadata, parses the metadata and markdown content, applies a HTML+CSS template, and generates a PDF file with native pagination and a linked table of contents.
-
-# Usage
+Read and parses YAML Frontmatter markdown files, applies a HTML+CSS template,
+and generates a PDF file with native pagination and a linked table of contents.
 
 `python project.py <template file> <markdown file>`
 
-# Target Markdown File Requirements
+Source files must be in 'YAML Frontmatter' format: a markdown file (`.md`)
+with a YAML header (separated by `---`).
 
-- Must be a text file with the extension '.md'
-- Must contain metadata fields in YAML format at the beginning of the file, separated by '---'
-- Must contain the following fields:
-    - `title`
-    - `version`
-    - `date_modified`
-    - `pdf_filename`
+The YAML header must contain a mapping with the following key-value pairs:
+`title`, `version`, `date_modified`, `pdf_filename`.
 
-# Included Files
+Included files:
 
 - `input.md`: Example input file.
 - `tomdtopdf`: This project's script.
 - `README.MD`: The course-specified readme.
 - `requirements.txt`: List of dependencies.
 - `template.html`: HTML and CSS template file for the Jinja2 module.
-
-# Dependencies
-
-- `python-frontmatter`
-- `markdown`
-- `jinja2`
-- `weasyprint`
-
-# Author
-
-Brad Fidler (@brfid)
-
-# License
-
-MIT License
 """
 
 import sys
@@ -58,10 +39,8 @@ def arguments():
     parser = ArgumentParser(description="Convert md to pdf.")
     parser.add_argument(
         "template_location", type=str, help="Location of the template file."
-        )
-    parser.add_argument(
-        "md_location", type=str, help="Location of the markdown file."
-        )
+    )
+    parser.add_argument("md_location", type=str, help="Md file location.")
     args = parser.parse_args()
     return args
 
@@ -153,7 +132,9 @@ def main():
     metadata, content = load_doc(args)  # extract metadata + content
     field_check(metadata)  # field check
     content_check(content)  # content check
-    html, template_dir = md2html(metadata, content, args.template_location)  # render HTML
+    html, template_dir = md2html(
+        metadata, content, args.template_location
+    )  # render HTML
     html2pdf(metadata, html)  # render PDF
 
 
